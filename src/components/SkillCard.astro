@@ -1,0 +1,135 @@
+---
+import type { Skill } from '../data/skills';
+
+interface Props {
+  skill: Skill;
+  index?: number;
+}
+
+const { skill, index = 0 } = Astro.props;
+const delay = `${index * 0.08}s`;
+---
+
+<div class="skill-card" style={`transition-delay: ${delay}`} data-percent={skill.percent}>
+  <div class="skill-header">
+    {skill.icon === "electric" ? (
+      <span class="skill-icon-text" aria-hidden="true">⚡</span>
+    ) : skill.icon === "code" ? (
+      <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+    ) : skill.icon === "seo" ? (
+      <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    ) : skill.icon === "design" ? (
+      <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+        <line x1="8" y1="21" x2="16" y2="21"></line>
+        <line x1="12" y1="17" x2="12" y2="21"></line>
+      </svg>
+    ) : skill.icon === "marketing" ? (
+      <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+        <polyline points="13 2 13 9 20 9"></polyline>
+      </svg>
+    ) : (
+      <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+    )}
+    <span class="skill-name">{skill.name}</span>
+  </div>
+  <div class="skill-progress-row">
+    <div class="skill-bar">
+      <div class="skill-fill" style="width: 0%"></div>
+    </div>
+    <span class="skill-level">{skill.level}</span>
+  </div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const card = entry.target as HTMLElement;
+          const fill = card.querySelector<HTMLElement>(".skill-fill");
+          const percent = card.dataset.percent;
+          if (fill && percent) fill.style.width = `${percent}%`;
+          card.classList.add("visible");
+          observer.unobserve(card);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".skill-card").forEach((el) => observer.observe(el));
+</script>
+
+<style>
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s;
+  }
+  .skill-card.visible { opacity: 1; transform: translateY(0); }
+  .skill-card:hover { border-color: var(--mint); }
+
+  .skill-header { display: flex; align-items: center; gap: 0.625rem; }
+  .skill-icon { color: var(--mint); width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
+  .skill-icon-text {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: var(--overlay);
+    color: var(--mint);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .skill-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .skill-progress-row { display: flex; align-items: center; gap: 0.5rem; }
+  .skill-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--overlay);
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    background: var(--mint);
+    border-radius: 9999px;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .skill-level {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+</style>

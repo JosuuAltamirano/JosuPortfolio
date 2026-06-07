@@ -1,11 +1,75 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SkillCard from '../components/SkillCard.astro';
+import Footer from '../components/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { education } from '../data/education';
+import { experience } from '../data/experience';
+import { projects } from '../data/projects';
+import { skills } from '../data/skills';
 ---
 
 <Layout>
-	<Welcome />
+  <Navbar />
+  <Hero />
+
+  <main class="main-content">
+    <div class="sections">
+      <About />
+
+      <section id="educacion" class="section-block animate">
+        <h2 class="section-title">Educación</h2>
+        <div class="timeline">
+          {education.map((item, i) => (
+            <TimelineItem item={item} index={i} />
+          ))}
+        </div>
+      </section>
+
+      <section id="experiencia" class="section-block animate">
+        <h2 class="section-title">Experiencia</h2>
+        <div class="timeline">
+          {experience.map((item, i) => (
+            <TimelineItem item={item} index={i} />
+          ))}
+        </div>
+      </section>
+
+      <section id="proyectos" class="section-block animate">
+        <h2 class="section-title">Proyectos</h2>
+        <div class="projects-grid">
+          {projects.map((project, i) => (
+            <ProjectCard project={project} index={i} />
+          ))}
+        </div>
+      </section>
+
+      <section id="habilidades" class="section-block animate">
+        <h2 class="section-title">Habilidades</h2>
+        <div class="skills-grid">
+          {skills.map((skill, i) => (
+            <SkillCard skill={skill} index={i} />
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
 </Layout>
+
+<style>
+  .main-content { padding: 3rem 1.5rem 0; }
+  .sections { max-width: 56rem; margin: 0 auto; }
+
+  .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 640px) { .projects-grid { grid-template-columns: 1fr 1fr; } }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  @media (min-width: 640px) { .skills-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

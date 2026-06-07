@@ -1,0 +1,97 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  index?: number;
+}
+
+const { project, index = 0 } = Astro.props;
+const delay = `${index * 0.08}s`;
+---
+
+<article
+  class:list={["project-card", { "project-card-full": project.full }]}
+  style={`transition-delay: ${delay}`}
+>
+  {project.featured && (
+    <span class="project-featured">{project.featured}</span>
+  )}
+  <div class="project-title">{project.title}</div>
+  <p class="project-desc">{project.description}</p>
+
+  <div class="project-tags">
+    {project.tags.map((tag) => (
+      <span class="tag">{tag}</span>
+    ))}
+  </div>
+
+  {project.links && project.links.length > 0 && (
+    <div class="project-links">
+      {project.links.map((link) => (
+        <a class="project-link" href={link.href} target="_blank" rel="noopener noreferrer">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+          {link.label}
+        </a>
+      ))}
+    </div>
+  )}
+</article>
+
+<style>
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, border-color 0.3s;
+  }
+  .project-card.visible { opacity: 1; transform: translateY(0); }
+  .project-card:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); border-color: var(--mint); }
+  .project-card-full { grid-column: 1 / -1; }
+
+  .project-featured {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--mint);
+    background: rgba(148, 226, 213, 0.15);
+    border-radius: 9999px;
+    padding: 0.125rem 0.5rem;
+  }
+  .project-title {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .project-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+  .project-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.25rem 0.625rem;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .project-link:hover { color: var(--mint); border-color: var(--mint); background: var(--surface-2); }
+</style>
