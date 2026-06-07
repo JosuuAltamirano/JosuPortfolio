@@ -4,6 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://josuealtamirano.dev', // ← cambia esto por tu dominio real
+  site: 'https://josu-portfolio-gamma.vercel.app',
   integrations: [sitemap()],
 });
