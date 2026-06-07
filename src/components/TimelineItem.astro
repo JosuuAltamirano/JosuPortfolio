@@ -10,7 +10,7 @@ const { item, index = 0 } = Astro.props;
 const delay = `${index * 0.08}s`;
 ---
 
-<div class="timeline-item" style={`transition-delay: ${delay}`}>
+<div class="timeline-item animate" style={`transition-delay: ${delay}`}>
   <div class:list={["timeline-dot", { "timeline-dot-muted": item.muted }]}></div>
   <div class="timeline-org">{item.org}</div>
   <div class="timeline-header">

@@ -11,7 +11,7 @@ const delay = `${index * 0.08}s`;
 ---
 
 <article
-  class:list={["project-card", { "project-card-full": project.full }]}
+  class:list={["project-card", "animate", { "project-card-full": project.full }]}
   style={`transition-delay: ${delay}`}
 >
   {project.featured && (
