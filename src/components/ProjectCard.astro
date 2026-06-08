@@ -52,11 +52,8 @@ const delay = `${index * 0.08}s`;
     flex-direction: column;
     gap: 0.75rem;
     position: relative;
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, border-color 0.3s;
+    transition: box-shadow 0.3s, border-color 0.3s;
   }
-  .project-card.visible { opacity: 1; transform: translateY(0); }
   .project-card:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); border-color: var(--mint); }
   .project-card-full { grid-column: 1 / -1; }
 
