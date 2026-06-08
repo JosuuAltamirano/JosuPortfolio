@@ -1,18 +1,40 @@
-/* ── CSS Custom Properties ── */
+/* ── CSS Custom Properties — dark (Catppuccin Mocha) ── */
 :root {
-  --bg:         #0f0f1a;
-  --surface:    #181825;
-  --surface-2:  #1e1e2e;
-  --text:       #cdd6f4;
-  --text-muted: #6c7086;
-  --mint:       #94e2d5;
-  --peach:      #fab387;
-  --blue:       #89b4fa;
-  --overlay:    #313244;
-  --border:     #45475a;
-  --radius:     12px;
-  --font-sans:  'Inter', system-ui, sans-serif;
-  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+  --bg:          #0f0f1a;
+  --surface:     #181825;
+  --surface-2:   #1e1e2e;
+  --text:        #cdd6f4;
+  --text-muted:  #6c7086;
+  --mint:        #94e2d5;
+  --peach:       #fab387;
+  --blue:        #89b4fa;
+  --overlay:     #313244;
+  --border:      #45475a;
+  --tag-bg:      rgba(148, 226, 213, 0.1);
+  --tag-border:  rgba(148, 226, 213, 0.2);
+  --tag-muted-bg:     rgba(108, 112, 134, 0.1);
+  --tag-muted-border: rgba(108, 112, 134, 0.2);
+  --radius:      12px;
+  --font-sans:   'Inter', system-ui, sans-serif;
+  --font-mono:   'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ── Light theme overrides (Catppuccin Latte) ── */
+html[data-theme="light"] {
+  --bg:          #eff1f5;
+  --surface:     #ffffff;
+  --surface-2:   #e6e9ef;
+  --text:        #4c4f69;
+  --text-muted:  #8c8fa1;
+  --mint:        #179299;
+  --peach:       #fe640b;
+  --blue:        #1e66f5;
+  --overlay:     #ccd0da;
+  --border:      #bcc0cc;
+  --tag-bg:      rgba(23, 146, 153, 0.1);
+  --tag-border:  rgba(23, 146, 153, 0.25);
+  --tag-muted-bg:     rgba(140, 143, 161, 0.12);
+  --tag-muted-border: rgba(140, 143, 161, 0.25);
 }
 
 /* ── Resets ── */
@@ -66,15 +88,15 @@ p { font-size: 0.9rem; line-height: 1.6; text-wrap: pretty; }
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: var(--mint);
-  background: rgba(148, 226, 213, 0.1);
-  border: 1px solid rgba(148, 226, 213, 0.2);
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
   border-radius: 4px;
   padding: 0.125rem 0.5rem;
 }
 .tag-muted {
   color: var(--text-muted);
-  background: rgba(108, 112, 134, 0.1);
-  border-color: rgba(108, 112, 134, 0.2);
+  background: var(--tag-muted-bg);
+  border-color: var(--tag-muted-border);
 }
 
 /* ── Shared section layout ── */
