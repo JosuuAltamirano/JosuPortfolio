@@ -15,7 +15,7 @@ export const experience: TimelineEntry[] = [
     ],
   },
   {
-    org: "OMETASAT 33",
+    org: "OMETASAT 32",
     title: "Desarrollador web (FCT)",
     date: "2026 · 1 mes",
     description:
