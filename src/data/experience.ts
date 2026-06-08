@@ -4,13 +4,13 @@ export const experience: TimelineEntry[] = [
   {
     org: "Proyecto propio",
     title: "Fundador — Odem Studio",
-    date: "2025 — Actual",
+    date: "2026 — Actual",
     description:
-      "Agencia digital 360 enfocada en negocios locales. Diseño web, posicionamiento SEO, branding y estrategia de presencia digital.",
+      "Agencia digital 360 enfocada en negocios locales. Diseño web, branding, automatizaciones e implementación de IA.",
     tags: [
       { label: "Diseño web" },
-      { label: "SEO" },
       { label: "Branding" },
+      { label: "Automatizaciones e IA" },
       { label: "Agencia 360" },
     ],
   },
