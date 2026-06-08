@@ -17,7 +17,7 @@ export const experience: TimelineEntry[] = [
   {
     org: "OMETASAT 32",
     title: "Desarrollador web (FCT)",
-    date: "2025 · 1 mes",
+    date: "2026 · 1 mes",
     description:
       "Prácticas de FP. Desarrollo y mejora de páginas web con foco en optimización SEO.",
     tags: [{ label: "Desarrollo web" }, { label: "SEO" }],
