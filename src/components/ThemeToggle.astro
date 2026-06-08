@@ -44,25 +44,21 @@
 
 <style>
   button {
-    position: fixed;
-    top: 1.25rem;
-    right: 1.25rem;
-    z-index: 100;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    background: var(--surface);
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
     border: 1px solid var(--border);
-    border-radius: 50%;
+    border-radius: 8px;
     color: var(--text-muted);
     cursor: pointer;
-    transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    flex-shrink: 0;
   }
   button:hover {
     color: var(--mint);
     border-color: var(--mint);
-    box-shadow: 0 0 12px rgba(148, 226, 213, 0.2);
   }
 </style>
